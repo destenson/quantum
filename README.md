@@ -57,9 +57,16 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
 
 ## Next Milestone
 - Add BitShares
-- Add other cyber•rated systems
+- Add other [cyber•rated](https://cyber.fund) systems
 - Update dependencies and refactoring
 
 ## License
 
 Under MIT License
+
+## Contributing
+1. Fork it
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create new Pull Request
