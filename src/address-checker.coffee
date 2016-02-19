@@ -26,6 +26,14 @@ module.exports =
   counterparty: (addr) ->
     RegExp('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$').test(addr)
 
+  factom: (addr) ->
+    if addr.length != 52
+      return false
+    try decoded = bs58check.decode(addr)
+    catch error
+      return false
+    decoded[0] == (95 || 177)
+
   nxt: (addr) ->
     RegExp('^(NXT|nxt)(-[a-zA-Z0-9]{4,5}){4}$').test(addr)
 
