@@ -8,6 +8,9 @@ module.exports =
       return true
     else false
 
+  omni: (addr) ->
+    RegExp('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$').test(addr)
+
   ethereum: (addr) ->
     RegExp('^(0x)?[0-9a-f]{40}$').test(addr)
 
