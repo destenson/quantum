@@ -88,3 +88,10 @@ describe "Balance", ->
       expect(bitcoin).to.exist
       expect(bitcoin.quantity).to.be.not.empty
       done()
+
+  it "has a BTS balance", (done) ->
+    balance("1.2.282").then (result) ->
+      bitshares = _.find(result, (item) -> item.asset == "BTS")
+      expect(bitshares).to.exist
+      expect(bitshares.quantity).to.be.not.empty
+      done()
