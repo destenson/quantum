@@ -8,3 +8,4 @@ module.exports =
   nem: require './nem'
   cryptoid: require './cryptoid'
   openassets: require './openassets'
+  factom: require './factom'

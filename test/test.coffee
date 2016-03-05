@@ -88,3 +88,10 @@ describe "Balance", ->
       expect(bitcoin).to.exist
       expect(bitcoin.quantity).to.be.not.empty
       done()
+
+  it "has a Factoids balance", (done) ->
+    balance("FA1y5ZGuHSLmf2TqNf6hVMkPiNGyQpQDTFJvDLRkKQaoPo4bmbgu").then (result) ->
+      factoids = _.find(result, (item) -> item.asset == "Factoids")
+      expect(factoids).to.exist
+      expect(factoids.quantity).to.be.not.empty
+      done()
