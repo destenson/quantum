@@ -4,10 +4,10 @@ InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
 
 factom = (addr) ->
-  url = "http://localhost:8089/v1/factoid-balance/#{addr}"
+  url = "http://node.cyber.fund:8077/v1/factoid-balance/#{addr}"
 
   req(url, json: true)
-    .timeout(2000)
+    .timeout(3000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
