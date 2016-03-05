@@ -10,3 +10,4 @@ module.exports =
   openassets: require './openassets'
   factom: require './factom'
   bitshares: require './bitshares'
+  omni: require './omni'

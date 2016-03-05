@@ -100,4 +100,10 @@ describe "Balance", ->
       bitshares = _.find(result, (item) -> item.asset == "BTS")
       expect(bitshares).to.exist
       expect(bitshares.quantity).to.be.not.empty
+
+  it "has a Omni balance", (done) ->
+    balance("1CRne14GDzTQvKYv1uNuitocTNptF3qKCX").then (result) ->
+      omni = _.find(result, (item) -> item.asset == "Omni")
+      expect(omni).to.exist
+      expect(omni.quantity).to.be.not.empty
       done()
