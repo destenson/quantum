@@ -9,3 +9,4 @@ module.exports =
   cryptoid: require './cryptoid'
   openassets: require './openassets'
   factom: require './factom'
+  bitshares: require './bitshares'

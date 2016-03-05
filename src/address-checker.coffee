@@ -42,3 +42,6 @@ module.exports =
 
   nem: (addr) ->
     RegExp('^[nN][a-zA-Z0-9]{5}(-[a-zA-Z0-9]{4,6}){6}$').test(addr)
+
+  bitshares: (addr) ->
+    RegExp('^1.2.[0-9]{1,10}$').test(addr)
