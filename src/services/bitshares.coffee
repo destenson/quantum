@@ -4,7 +4,7 @@ _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 
 options =
-  url: "http://node.cyber.fund:8092/rpc",
+  url: "http://node.cyber.fund:8055/rpc",
   method: 'GET',
   headers: {
     'Content-Type': 'application/json-rpc',
