@@ -37,8 +37,11 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
 - Using `http://blockscan.com`: Counterparty
 - Using `https://api.coinprism.com`: Open Assets Protocol
 - Using `https://api.ripple.com`: Ripple and Ripple based IOUs
+- Using `http://omnichest.info`: Omni
 - Using `http://jnxt.org`: NXT and NXT AE (on port 7876)
-- Using `http://node.cyber.fund`: NEM (on port 7890)
+- Using `http://bigalice3.nem.ninja`: NEM (on port 7890)
+- Using `http://node.cyber.fund`: Bitshares with IDSs like 1.2.xxx (on port 8055)
+- Using `http://node.cyber.fund`: Factom (on port 8077)
 - Using `https://chainz.cryptoid.info`: Dash, PeerCoin, Blackcoin, Grantcoin, CapriCoin, Rubycoin
 
 ## Installation
@@ -54,11 +57,6 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
 ```
 ~ » npm test
 ```
-
-## Next Milestone
-- Add BitShares
-- Add other [cyber•rated](https://cyber.fund) systems
-- Update dependencies and refactoring
 
 ## License
 
