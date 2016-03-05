@@ -2,9 +2,10 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+converter = require("./../converter")
 
 nem = (addr) ->
-  url = "http://node.cyber.fund:7890/account/get?address=#{addr.replace(/-/g,'')}"
+  url = "http://bigalice3.nem.ninja:7890/account/get?address=#{addr.replace(/-/g,'')}"
 
   req(url, json: true)
     .timeout(1000)
@@ -14,7 +15,7 @@ nem = (addr) ->
         status: "success"
         service: "http://node.cyber.fund:7890"
         address: addr
-        quantity: json.account.balance
+        quantity: converter.toCoin(json.account.balance, "XEM")
         asset: "XEM"
       else
         if _.isObject(json) and json.message == "error"
