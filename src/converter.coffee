@@ -3,7 +3,7 @@ Big = require('big.js')
 conversion = {
   "ETH": 1000000000000000000,
   "NQT": 100000000,
-  "Factoids": 100000000,
+  "FCT": 100000000,
   "XEM": 1000000
 }
 

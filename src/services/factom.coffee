@@ -14,8 +14,8 @@ factom = (addr) ->
         status: "success"
         service: "http://localhost:8089"
         address: addr
-        asset: "Factoids"
-        quantity: converter.toCoin(json.Response, "Factoids")
+        asset: "FCT"
+        quantity: converter.toCoin(json.Response, "FCT")
       else
         if _.isObject(json) and json.message == "error"
           []
