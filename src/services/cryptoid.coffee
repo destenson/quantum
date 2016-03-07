@@ -16,7 +16,7 @@ cryptoid = (addr) ->
   url = "http://chainz.cryptoid.info/#{currency}/api.dws?q=getbalance&a=#{addr}"
 
   req(url, json: true)
-    .timeout(1000)
+    .timeout(2000)
     .cancellable()
     .spread (resp) ->
       if resp.statusCode in [200..299]

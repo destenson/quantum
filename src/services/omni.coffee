@@ -19,7 +19,7 @@ omni = (addr) ->
     .map (property_id) ->
       url = "http://omnichest.info/requeststat.aspx?stat=balance&prop=#{property_id}&address=#{addr}"
       req(url, json: true)
-        .timeout(4000)
+        .timeout(3000)
         .cancellable()
         .spread (resp, json) ->
           if resp.statusCode in [200..299]

@@ -8,7 +8,7 @@ nem = (addr) ->
   url = "http://bigalice3.nem.ninja:7890/account/get?address=#{addr.replace(/-/g,'')}"
 
   req(url, json: true)
-    .timeout(1000)
+    .timeout(2000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]

@@ -1,4 +1,3 @@
 chai = require 'chai'
 GLOBAL.expect = chai.expect
-chai.config.includeStack = false
-
+chai.config.includeStack = true

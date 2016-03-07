@@ -12,7 +12,7 @@ chain_so = (addr) ->
   url = "https://chain.so/api/v2/get_address_balance/#{network}/#{addr}"
 
   req(url, json: true)
-    .timeout(3000)
+    .timeout(2000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]

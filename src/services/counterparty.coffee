@@ -7,7 +7,7 @@ counterparty = (addr) ->
   url = "http://xcp.blockscan.com/api2?module=address&action=balance&btc_address=#{addr}"
 
   req(url, json: true)
-    .timeout(5000)
+    .timeout(2000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299] and _.isArray(json.data)

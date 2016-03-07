@@ -19,7 +19,7 @@ bitshares = (addr) ->
       'params': [addr,[]]
     )
   req(options)
-    .timeout(3000)
+    .timeout(2000)
     .cancellable()
     .spread (resp, json) ->
       json = JSON.parse(json)
@@ -38,7 +38,7 @@ bitshares = (addr) ->
           "params":[asset.asset_id]
         )
       req(options)
-        .timeout(3000)
+        .timeout(2000)
         .cancellable()
         .spread (resp, json) ->
           json = JSON.parse(json)

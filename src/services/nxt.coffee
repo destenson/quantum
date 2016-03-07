@@ -8,7 +8,7 @@ nxt = (addr) ->
   url = "http://jnxt.org:7876/nxt?requestType=getBalance&account=#{addr}"
 
   req(url, json: true)
-    .timeout(2000)
+    .timeout(3000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
