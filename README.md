@@ -59,6 +59,9 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
 ~ » npm test
 ```
 
+## Next Milestone
+- Move all urls to config file
+
 ## License
 
 Under MIT License

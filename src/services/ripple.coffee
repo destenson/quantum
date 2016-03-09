@@ -17,6 +17,8 @@ ripple = (addr) ->
           []
         else
           throw new InvalidResponseError service: url, response: resp
+    .filter (item) ->
+      item.value != '0'
     .map (asset) ->
       status: "success"
       service: "https://api.ripple.com"
