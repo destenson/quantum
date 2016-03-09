@@ -16,7 +16,7 @@ nxt = (addr) ->
         service: "http://jnxt.org:7876"
         address: addr
         asset: "NXT"
-        quantity: converter.toCoin(json.guaranteedBalanceNQT, "NQT")
+        quantity: converter.toCoin(json.balanceNQT, "NXT")
       else
         if _.isObject(json) and json.message == "error"
           []

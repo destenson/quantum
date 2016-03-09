@@ -5,7 +5,7 @@ checker = require('./address-checker')
 balance = (addr, callback) ->
   Promise
     .settle((fn(addr) if checker[s.toString()](addr)) for s, fn of services)
-    .timeout(8000)
+    .timeout(10000)
     .cancellable()
     .map (pi) -> pi.isFulfilled() and pi.value()
     .filter (item) -> !!item

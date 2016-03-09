@@ -66,9 +66,9 @@ describe "Balance", ->
       expect(nem).to.exist
       done()
 
-  it "has a NQT balance", (done) ->
+  it "has a NXT balance", (done) ->
     balance("NXT-K5KL-23DJ-3XLK-22222").then (result) ->
-      nxt = _.find(result, (item) -> item.asset == "NSC")
+      nxt = _.find(result, (item) -> item.asset == "NXT")
       expect(nxt).to.exist
       done()
 
@@ -78,14 +78,14 @@ describe "Balance", ->
       expect(bitcoin).to.exist
       done()
 
-  it "has a Factoids balance", (done) ->
+  it "has a FCT balance", (done) ->
     balance("FA1y5ZGuHSLmf2TqNf6hVMkPiNGyQpQDTFJvDLRkKQaoPo4bmbgu").then (result) ->
       factoids = _.find(result, (item) -> item.asset == "FCT")
       expect(factoids).to.exist
       done()
 
   it "has a BTS balance", (done) ->
-    balance("1.2.282").then (result) ->
+    balance("xeroc").then (result) ->
       bitshares = _.find(result, (item) -> item.asset == "BTS")
       expect(bitshares).to.exist
       done()
