@@ -11,3 +11,4 @@ module.exports =
   factom: require './factom'
   bitshares: require './bitshares'
   omni: require './omni'
+  doge: require './doge'

@@ -2,11 +2,15 @@ bs58check = require('bs58check')
 
 module.exports =
   chainso: (addr) ->
-    chainso = RegExp('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$').test(addr) ||
-      RegExp('^[LD][a-km-zA-HJ-NP-Z1-9]{33}$').test(addr)
-    if chainso
-      return true
-    else false
+    # chainso = RegExp('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$').test(addr) ||
+    #   RegExp('^L[a-km-zA-HJ-NP-Z1-9]{33}$').test(addr)
+    # if chainso
+    #   return true
+    # else false
+    RegExp('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$').test(addr) || RegExp('^L[a-km-zA-HJ-NP-Z1-9]{33}$').test(addr)
+
+  doge: (addr) ->
+    RegExp('^D[a-km-zA-HJ-NP-Z1-9]{33}$').test(addr)
 
   omni: (addr) ->
     RegExp('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$').test(addr)

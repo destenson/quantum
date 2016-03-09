@@ -3,21 +3,18 @@ req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 
-chain_so = (addr) ->
-  network = if (addr[0] == '1' || addr[0] == '3') then 'BTC' else 'LTC'
-
-  url = "https://chain.so/api/v2/get_address_balance/#{network}/#{addr}"
-
+doge = (addr) ->
+  url = "http://dogechain.info/api/v1/address/balance/#{addr}"
   req(url, json: true)
     .timeout(3000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: "https://chain.so"
+        service: "https://dogechain.info"
         address: addr
-        quantity: json.data.confirmed_balance
-        asset: network
+        quantity: json.balance
+        asset: "DOGE"
       else
         if _.isObject(json) and json.message == "error"
           []
@@ -29,4 +26,4 @@ chain_so = (addr) ->
     .catch InvalidResponseError, (e) ->
       [status: "error", service: e.service, message: e.message, raw: e.response]
 
-module.exports = chain_so
+module.exports = doge
