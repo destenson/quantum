@@ -3,6 +3,15 @@ req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 
+bitAssets = {
+  CNY: 'BITCNY',
+  USD: 'BITUSD',
+  BTC: 'BITBTC',
+  SILVER: 'BITSILVER',
+  GOLD: 'BITGOLD',
+  EUR: 'BITEUR'
+}
+
 options =
   url: "http://node.cyber.fund:8055/rpc",
   method: 'GET',
@@ -52,12 +61,15 @@ bitshares = (addr) ->
     .map (asset) ->
       balance = parseInt(asset.amount, 10)
       quantity = balance / (10 ** asset.divisibility)
+      token = if _.has(bitAssets, asset.name) then bitAssets[asset.name] else asset.name
 
       status: "success"
       service: "http://node.cyber.fund:8092/rpc"
       address: addr
       quantity: quantity
-      asset: asset.name
+      asset: token
+    .filter (item) ->
+      item.quantity != 0
 
     .catch Promise.TimeoutError, (e) ->
       [status: 'error', service: url, message: e.message, raw: e]
