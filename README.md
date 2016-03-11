@@ -1,10 +1,9 @@
-# Crypto-balances
-[![Join the chat at https://gitter.im/ValeryLitvin/crypto-balances](https://badges.gitter.im/ValeryLitvin/crypto-balances.svg)](https://gitter.im/ValeryLitvin/crypto-balances?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![npm version](https://badge.fury.io/js/crypto-balances.svg)](https://badge.fury.io/js/crypto-balances)
-[![Code Climate](https://codeclimate.com/github/ValeryLitvin/crypto-balances/badges/gpa.svg)](https://codeclimate.com/github/ValeryLitvin/crypto-balances)
-[![Issue Count](https://codeclimate.com/github/ValeryLitvin/crypto-balances/badges/issue_count.svg)](https://codeclimate.com/github/ValeryLitvin/crypto-balances)
+# Quantum
+[![Join the chat at https://gitter.im/cyberFund/quantum](https://badges.gitter.im/cyberFund/quantum.svg)](https://gitter.im/cyberFund/quantum?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Easy check addresses balances of various crypto tokens. Script automaticaly recognize a protocol by address and return balance of tokens associated with it.
+Easy check addresses balances of various crypto tokens. Script automaticaly recognize a protocol by address and return balance of tokens associated with it. Token names are resolved using Chaingear.
+
+Maintainer @ValeryLitvin
 
 On repo project folder type:
 ```
@@ -48,7 +47,7 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
 ## Installation
 
 ```
-~ » git clone https://github.com/ValeryLitvin/crypto-balances
+~ » git clone https://github.com/cyberFund/quantum
 ~ » cd crypto-balances
 ~ » make init
 ~ » make build

@@ -1,7 +1,9 @@
 {
-  "name": "crypto-balances",
+  "name": "quantum-crypto",
   "description": "Easy check addresses balances of various crypto tokens. Script automaticaly recognize a protocol by address and return balance of tokens associated with it.",
   "keywords": [
+    "quantum",
+    "cyberfund",
     "token",
     "blockchain",
     "crypto",
@@ -34,7 +36,7 @@
     "factom",
     "factoids"
   ],
-  "version": "2.1.2",
+  "version": "1.0.2",
   "author": "Valery Litvin <litvintech@gmail.com> (http://valerylitvin.me/)",
   "contributors": "Dmitry Starodubcev <d@cyber.fund> (https://keybase.io/21xhipster)",
   "main": "lib/crypto-balance.js",
@@ -47,7 +49,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ValeryLitvin/crypto-balances"
+    "url": "https://github.com/cyberFund/quantum"
   },
   "dependencies": {
      "big.js": "^3.1.3",
