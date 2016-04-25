@@ -36,7 +36,7 @@
     "factom",
     "factoids"
   ],
-  "version": "1.0.9",
+  "version": "1.1.0",
   "author": "Valery Litvin <litvintech@gmail.com> (http://valerylitvin.me/)",
   "contributors": "Dmitry Starodubcev <d@cyber.fund> (https://keybase.io/21xhipster)",
   "main": "lib/crypto-balance.js",
