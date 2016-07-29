@@ -4,7 +4,7 @@ _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 
 nxt_assets = (addr) ->
-  url = "http://jnxt.org:7876/nxt?requestType=getAccountAssets&account=#{addr}"
+  url = "http://node.cyber.fund:7877/nxt?requestType=getAccountAssets&account=#{addr}"
 
   req(url, json: true)
     .timeout(2000)
@@ -18,7 +18,7 @@ nxt_assets = (addr) ->
         else
           throw new InvalidResponseError service: url, response: resp
     .map (asset) ->
-      assetUrl = "http://jnxt.org:7876/nxt?requestType=getAsset&asset=#{asset.asset}"
+      assetUrl = "http://node.cyber.fund:7877/nxt?requestType=getAsset&asset=#{asset.asset}"
       req(assetUrl, json: true)
         .timeout(2000)
         .cancellable()
@@ -35,7 +35,7 @@ nxt_assets = (addr) ->
       quantity = balance / (10 ** asset.divisibility)
 
       status: "success"
-      service: "http://jnxt.org:7876"
+      service: "http://node.cyber.fund:7877"
       address: addr
       quantity: quantity.toFixed(6)
       asset: asset.name

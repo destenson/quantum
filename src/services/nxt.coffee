@@ -5,7 +5,7 @@ InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
 
 nxt = (addr) ->
-  url = "http://jnxt.org:7876/nxt?requestType=getBalance&account=#{addr}"
+  url = "http://node.cyber.fund:7877/nxt?requestType=getBalance&account=#{addr}"
 
   req(url, json: true)
     .timeout(3000)
@@ -13,7 +13,7 @@ nxt = (addr) ->
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: "http://jnxt.org:7876"
+        service: "http://node.cyber.fund:7877"
         address: addr
         asset: "NXT"
         quantity: converter.toCoin(json.balanceNQT, "NXT")
