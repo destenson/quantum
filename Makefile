@@ -15,4 +15,3 @@ dist: clean init build
 
 publish: dist
 	npm publish
-

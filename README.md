@@ -3,7 +3,7 @@
 
 Easy check addresses balances of various crypto tokens. Script automaticaly recognize a protocol by address and return balance of tokens associated with it. Token names are resolved using Chaingear.
 
-Maintainer @ValeryLitvin
+Maintainer @ValeryLitvin and @21xhipster
 
 On repo project folder type:
 ```
@@ -21,7 +21,7 @@ On repo project folder type:
 ## Node.js
 
 ```
-var balance = require('crypto-balances');
+var balance = require('quantum');
 balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
   console.log(result);
 });
@@ -34,21 +34,24 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
 - Using `https://chain.so`: Bitcoin, Litecoin
 - Using `http://dogechain.info`: Dogecoin
 - Using `http://etherscan.io`: Ethereum
+- Using `http://node.cyber.fund`: Ethereum Classic (port 8555)
+- Using `http://node2.cyber.fund`: Steem, SBD, Steem Power with Nickname (on port 8091)
+- Using `http://node.cyber.fund`: BitShares with account's ID (on port 8055)
 - Using `http://blockscan.com`: Counterparty
 - Using `https://api.coinprism.com`: Open Assets Protocol
 - Using `https://api.ripple.com`: Ripple and Ripple based IOUs
 - Using `http://omnichest.info`: Omni
-- Using `http://jnxt.org`: NXT and NXT AE (on port 7876)
+- Using `http://node.cyber.fund`: NXT and NXT AE (on port 7877)
 - Using `http://bigalice3.nem.ninja`: NEM (on port 7890)
-- Using `http://node.cyber.fund`: Bitshares with account names (on port 8055)
-- Using `http://node.cyber.fund`: Factom (on port 8077)
+- Using `https://lisk.io`: Lisk
+- Using `http://node.cyber.fund`: Factom (on port 8077) [temporarily turned off]
 - Using `https://chainz.cryptoid.info`: Dash, PeerCoin, Blackcoin
 
 ## Installation
 
 ```
 ~ » git clone https://github.com/cyberFund/quantum
-~ » cd crypto-balances
+~ » cd quantum
 ~ » make init
 ~ » make build
 ```
@@ -57,9 +60,6 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
 ```
 ~ » npm test
 ```
-
-## Next Milestone
-- Move all urls to config file
 
 ## License
 

@@ -1,5 +1,5 @@
 require "./test_helper"
-balance = require "../src/crypto-balance"
+balance = require "../src/quantum"
 _ = require("lodash")
 
 

@@ -1,5 +1,5 @@
 _ = require("lodash")
-balance = require("./crypto-balance")
+balance = require("./quantum")
 
 module.exports.run = ->
   addr = process.argv[2]
