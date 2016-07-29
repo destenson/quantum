@@ -4,7 +4,7 @@ _ = require("lodash")
 
 
 describe "Balance", ->
-
+  this.timeout(12000);
   # Tests may failed if there are no given assets
   it "has a XCP balance", (done) ->
     balance("16WhhnUUCZVvszFxsaCG3d6v77Qin1LErQ").then (result) ->
@@ -78,20 +78,32 @@ describe "Balance", ->
       expect(bitcoin).to.exist
       done()
 
-  it "has a FCT balance", (done) ->
-    balance("FA1y5ZGuHSLmf2TqNf6hVMkPiNGyQpQDTFJvDLRkKQaoPo4bmbgu").then (result) ->
-      factoids = _.find(result, (item) -> item.asset == "FCT")
-      expect(factoids).to.exist
-      done()
+  # it "has a FCT balance", (done) ->
+  #   balance("FA1y5ZGuHSLmf2TqNf6hVMkPiNGyQpQDTFJvDLRkKQaoPo4bmbgu").then (result) ->
+  #     factoids = _.find(result, (item) -> item.asset == "FCT")
+  #     expect(factoids).to.exist
+  #     done()
 
   it "has a BTS balance", (done) ->
-    balance("xeroc").then (result) ->
+    balance("1.2.23043").then (result) ->
       bitshares = _.find(result, (item) -> item.asset == "BTS")
       expect(bitshares).to.exist
       done()
 
   it "has a Omni balance", (done) ->
     balance("1CRne14GDzTQvKYv1uNuitocTNptF3qKCX").then (result) ->
-      omni = _.find(result, (item) -> item.asset == "Omni")
+      omni = _.find(result, (item) -> item.asset == "MSC")
       expect(omni).to.exist
+      done()
+
+  it "has a LSK balance", (done) ->
+    balance("8974288402262267345L").then (result) ->
+      omni = _.find(result, (item) -> item.asset == "LSK")
+      expect(omni).to.exist
+      done()
+
+  it "has a Steem Power balance", (done) ->
+    balance("dantheman").then (result) ->
+      steempower = _.find(result, (item) -> item.asset == "SP")
+      expect(steempower).to.exist
       done()
