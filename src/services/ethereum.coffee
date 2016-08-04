@@ -18,16 +18,15 @@ ethereum = (addr) ->
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
-        balances.push({
+        balances = [{
           service: "http://api.etherscan.io"
           asset: "ETH"
           quantity: json.result
-        })
-        balances.push({
+        }, {
           service: "http://node.cyber.fund"
           asset: "ETC"
           quantity: web3.eth.getBalance(addr)
-        })
+        }]
         balances
       else
         if _.isObject(json) and json.message == "error"
