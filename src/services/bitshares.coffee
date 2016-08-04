@@ -20,7 +20,8 @@ options =
     'Accept': 'application/json-rpc'
   }
 
-bitshares = (addr) ->
+bitshares = (account) ->
+  addr = account.split('-')[1]
   options.body =
     JSON.stringify(
       'jsonrpc': '2.0',
@@ -65,7 +66,7 @@ bitshares = (addr) ->
 
       status: "success"
       service: "http://node.cyber.fund:8092/rpc"
-      address: addr
+      address: account
       quantity: quantity
       asset: token
     .filter (item) ->

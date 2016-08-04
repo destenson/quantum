@@ -20,14 +20,15 @@ global_prop.body = JSON.stringify(
 balances = []
 
 steem = (account) ->
+  addr = account.split('-')[1]
   account_info.body = JSON.stringify(
           jsonrpc: '2.0',
-          params : [0, "get_accounts", [[account]]],
+          params : [0, "get_accounts", [[addr]]],
           method : 'call',
           id     : Math.floor(Math.random() * 10000)
   )
   req(account_info)
-    .timeout(3000)
+    .timeout(300)
     .cancellable()
     .spread (resp, json) ->
       json = JSON.parse(json)
@@ -40,23 +41,24 @@ steem = (account) ->
           []
         else
           throw new InvalidResponseError service: url, response: resp
-    req(global_prop)
-      .timeout(3000)
-      .cancellable()
-      .spread (resp, json) ->
-        json = JSON.parse(json)
-        if resp.statusCode in [200..299]
-          price = parseFloat(json.result.total_vesting_fund_steem, 10) / parseFloat(json.result.total_vesting_shares, 10)
-          balances[2].amount *= price
-          balances
-        else
-          throw new InvalidResponseError service: url, response: resp
-      .map (token) ->
-        status: "success"
-        service: "http://node.cyber.fund:8091/rpc"
-        address: account
-        quantity: token.amount
-        asset: token.name
+  req(global_prop)
+    .timeout(300)
+    .cancellable()
+    .spread (resp, json) ->
+      json = JSON.parse(json)
+      if resp.statusCode in [200..299]
+        price = parseFloat(json.result.total_vesting_fund_steem, 10) / parseFloat(json.result.total_vesting_shares, 10)
+        balances[2].amount *= price
+        balances
+      else
+        throw new InvalidResponseError service: url, response: resp
+      balances
+    .map (token) ->
+      status: "success"
+      service: "http://node.cyber.fund:8091/rpc"
+      address: account
+      quantity: token.amount
+      asset: token.name
 
   .catch Promise.TimeoutError, (e) ->
     [status: 'error', service: url, message: e.message, raw: e]

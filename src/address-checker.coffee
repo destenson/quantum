@@ -46,10 +46,10 @@ module.exports =
     RegExp('^[nN][a-zA-Z0-9]{5}(-[a-zA-Z0-9]{4,6}){6}$').test(addr)
 
   bitshares: (addr) ->
-    RegExp('^1.2.[0-9]{1,10}$').test(addr)
+    RegExp('^(bitshares-)[a-z0-9-.]{1,15}$').test(addr)
 
   steem: (addr) ->
-    RegExp('^(?!1.2.).[a-z0-9-.]{1,15}$').test(addr)
+    RegExp('^(steem-)[a-z0-9-.]{1,15}$').test(addr)
 
   lisk: (addr) ->
     RegExp('^[0-9]{19}L$').test(addr)

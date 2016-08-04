@@ -16,6 +16,7 @@ On repo project folder type:
   quantity: '0.29' }
 
   0.29 ETH
+  0.29 ETC
 ```
 
 ## Node.js
@@ -26,7 +27,7 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
   console.log(result);
 });
 
-[{"quantity":"0.29","asset":"ETH"}]
+[{"quantity":"0.29","asset":"ETH"},{"quantity":"0.29","asset":"ETC"}]
 ```
 
 ## Supported Protocols
@@ -34,17 +35,17 @@ balance("0xfc30a6c6d1d61f0027556ed25a670345ab39d0cb", function(error, result) {
 - Using `https://chain.so`: Bitcoin, Litecoin
 - Using `http://dogechain.info`: Dogecoin
 - Using `http://etherscan.io`: Ethereum
-- Using `http://node.cyber.fund`: Ethereum Classic (port 8555)
-- Using `http://node2.cyber.fund`: Steem, SBD, Steem Power with Nickname (on port 8091)
-- Using `http://node.cyber.fund`: BitShares with account's ID (on port 8055)
+- Using `http://node.cyber.fund`: Ethereum Classic
+- Using `http://node2.cyber.fund`: Steem, SBD, Steem Power with [steem-nickname]
+- Using `http://node.cyber.fund`: BitShares with [bitshares-nickname]
 - Using `http://blockscan.com`: Counterparty
 - Using `https://api.coinprism.com`: Open Assets Protocol
 - Using `https://api.ripple.com`: Ripple and Ripple based IOUs
-- Using `http://omnichest.info`: Omni
-- Using `http://node.cyber.fund`: NXT and NXT AE (on port 7877)
-- Using `http://bigalice3.nem.ninja`: NEM (on port 7890)
+- Using `http://omnichest.info`: Omni (temporarily turned off)
+- Using `http://node.cyber.fund`: NXT and NXT AE
+- Using `http://bigalice3.nem.ninja`: NEM
 - Using `https://lisk.io`: Lisk
-- Using `http://node.cyber.fund`: Factom (on port 8077) [temporarily turned off]
+- Using `http://node.cyber.fund`: Factom (temporarily turned off)
 - Using `https://chainz.cryptoid.info`: Dash, PeerCoin, Blackcoin
 
 ## Installation

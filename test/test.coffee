@@ -85,16 +85,16 @@ describe "Balance", ->
   #     done()
 
   it "has a BTS balance", (done) ->
-    balance("1.2.23043").then (result) ->
+    balance("bitshares-hipster").then (result) ->
       bitshares = _.find(result, (item) -> item.asset == "BTS")
       expect(bitshares).to.exist
       done()
 
-  it "has a Omni balance", (done) ->
-    balance("1CRne14GDzTQvKYv1uNuitocTNptF3qKCX").then (result) ->
-      omni = _.find(result, (item) -> item.asset == "MSC")
-      expect(omni).to.exist
-      done()
+  # it "has a Omni balance", (done) ->
+  #   balance("1CRne14GDzTQvKYv1uNuitocTNptF3qKCX").then (result) ->
+  #     omni = _.find(result, (item) -> item.asset == "MSC")
+  #     expect(omni).to.exist
+  #     done()
 
   it "has a LSK balance", (done) ->
     balance("8974288402262267345L").then (result) ->
@@ -103,7 +103,7 @@ describe "Balance", ->
       done()
 
   it "has a Steem Power balance", (done) ->
-    balance("dantheman").then (result) ->
+    balance("steem-dantheman").then (result) ->
       steempower = _.find(result, (item) -> item.asset == "SP")
       expect(steempower).to.exist
       done()
