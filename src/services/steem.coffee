@@ -53,12 +53,12 @@ steem = (account) ->
       else
         throw new InvalidResponseError service: url, response: resp
       balances
-    .map (token) ->
-      status: "success"
-      service: "http://node.cyber.fund:8091/rpc"
-      address: account
-      quantity: token.amount
-      asset: token.name
+  .map (token) ->
+    status: "success"
+    service: "http://node.cyber.fund:8091/rpc"
+    address: account
+    quantity: token.amount
+    asset: token.name
 
   .catch Promise.TimeoutError, (e) ->
     [status: 'error', service: url, message: e.message, raw: e]

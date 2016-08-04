@@ -43,7 +43,7 @@
     "cethereum",
     "steemit"
   ],
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Valery Litvin <litvintech@gmail.com> (http://valerylitvin.me/)",
   "contributors": "Dmitry Starodubcev <d@cyber.fund> (https://keybase.io/21xhipster)",
   "main": "lib/quantum.js",
