@@ -1,11 +1,12 @@
 Big = require('big.js')
 
 conversion = {
-  "ETH": 1000000000000000000,
+  "BTC": 100000000,
   "ETC": 1000000000000000000,
+  "ETH": 1000000000000000000,
+  "FCT": 100000000,
   "LSK": 100000000,
   "NXT": 100000000,
-  "FCT": 100000000,
   "XEM": 1000000
 }
 
@@ -15,9 +16,3 @@ module.exports =
       basicAmount = Number(basicAmount)
     bigBasicAmount = new Big(basicAmount)
     Number(bigBasicAmount.div(conversion[type])).toString()
-
-  toSatoshi: (coin, type) ->
-    if (typeof coin == 'string')
-      coin = Number(coin)
-    bigCoin = new Big(coin);
-    Number(bigCoin.times(conversion[type])).toString()
