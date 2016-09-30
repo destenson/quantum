@@ -4,7 +4,6 @@ _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
 service = "https://api.blockcypher.com"
-SUCCESS = "success"
 
 blockcypher = (addr) ->
   url = "https://api.blockcypher.com/v1/btc/main/addrs/#{addr}/balance"
@@ -13,7 +12,7 @@ blockcypher = (addr) ->
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
-        status: SUCCESS
+        status: "success"
         service: service
         address: addr
         quantity: converter.toCoin(json.balance, "BTC")

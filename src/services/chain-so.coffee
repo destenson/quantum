@@ -4,9 +4,7 @@ _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 
 chain_so = (addr) ->
-  network = if (addr[0] == '1' || addr[0] == '3') then 'BTC' else 'LTC'
-
-  url = "https://chain.so/api/v2/get_address_balance/#{network}/#{addr}"
+  url = "https://chain.so/api/v2/get_address_balance/LTC/#{addr}"
 
   req(url, json: true)
     .timeout(3000)
@@ -17,7 +15,7 @@ chain_so = (addr) ->
         service: "https://chain.so"
         address: addr
         quantity: json.data.confirmed_balance
-        asset: network
+        asset: "LTC"
       else
         if _.isObject(json) and json.message == "error"
           []

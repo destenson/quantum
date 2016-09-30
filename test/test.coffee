@@ -6,6 +6,19 @@ _ = require("lodash")
 describe "Balance", ->
   this.timeout(12000);
   # Tests may failed if there are no given assets
+
+  it "has a BTC balance", (done) ->
+    balance("1KpyvRt5EYumsCTe9SGQ4FeyM4mWcagpnM").then (result) ->
+      bitcoin = _.find(result, (item) -> item.asset == "BTC")
+      expect(bitcoin).to.exist
+      done()
+
+  it "has a LTC balance", (done) ->
+    balance("LLiwS8XkQ7ra4XAg1TybTWrwnqFvMhiRfE").then (result) ->
+      litecoin = _.find(result, (item) -> item.asset == "LTC")
+      expect(litecoin).to.exist
+      done() 
+
   it "has a XCP balance", (done) ->
     balance("16WhhnUUCZVvszFxsaCG3d6v77Qin1LErQ").then (result) ->
       counterparty = _.find(result, (item) -> item.asset == "XCP")
@@ -28,12 +41,6 @@ describe "Balance", ->
     balance("B95qcCHpma5XZu4n6hP9pP5APiasCR16Ts").then (result) ->
       blackcoin = _.find(result, (item) -> item.asset == "BLK")
       expect(blackcoin).to.exist
-      done()
-
-  it "has a LTC balance", (done) ->
-    balance("LLiwS8XkQ7ra4XAg1TybTWrwnqFvMhiRfE").then (result) ->
-      litecoin = _.find(result, (item) -> item.asset == "LTC")
-      expect(litecoin).to.exist
       done()
 
   it "has a DOGE balance", (done) ->
@@ -70,12 +77,6 @@ describe "Balance", ->
     balance("NXT-K5KL-23DJ-3XLK-22222").then (result) ->
       nxt = _.find(result, (item) -> item.asset == "NXT")
       expect(nxt).to.exist
-      done()
-
-  it "has a BTC balance", (done) ->
-    balance("1KpyvRt5EYumsCTe9SGQ4FeyM4mWcagpnM").then (result) ->
-      bitcoin = _.find(result, (item) -> item.asset == "BTC")
-      expect(bitcoin).to.exist
       done()
 
   # it "has a FCT balance", (done) ->
