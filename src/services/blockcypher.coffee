@@ -3,10 +3,11 @@ req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
+token = require("./../../../token.json").token
 service = "https://api.blockcypher.com"
 
 blockcypher = (addr) ->
-  url = "https://api.blockcypher.com/v1/btc/main/addrs/#{addr}/balance"
+  url = "https://api.blockcypher.com/v1/btc/main/addrs/#{addr}/balance?token="+token
   req(url, json: true)
     .timeout(5000)
     .cancellable()
