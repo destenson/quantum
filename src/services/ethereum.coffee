@@ -24,9 +24,7 @@ ethereum = (addr) ->
         console.log("here", json, JSON.parse(json))
         ret = null
         try
-          console.log(1)
           ret = JSON.parse(json)
-          console.log(123)
         catch e
           console.log('could not parse json')
 
@@ -38,11 +36,7 @@ ethereum = (addr) ->
         #  quantity: web3.eth.getBalance(addr)
         #}]
         balances = []
-        console.log("RET", ret)
-        console.log('--------------')
-        console.log('ret:json', ret, json)
         _.each ret, (v, k)->
-          console.log(k, v)
           balances.push({
             status: "success"
             service: "http://api.cyber.fund"
@@ -54,7 +48,6 @@ ethereum = (addr) ->
           []
         else
           throw new InvalidResponseError service: url, response: resp
-      console.log("Balsnces", balances)
       return balances
     #.map (token) ->
     #    status: "success"
