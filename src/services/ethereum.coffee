@@ -18,16 +18,12 @@ ethereum = (addr) ->
     .timeout(15000)
     .cancellable()
     .spread (resp, json) ->
-      console.log("ETHER status", resp.statusCode)
-      console.log("resp.statusCode === 200", resp.statusCode == 200)
       if resp.statusCode == 200
-        console.log("here", json, JSON.parse(json))
         ret = null
         try
           ret = JSON.parse(json)
         catch e
           console.log('could not parse json')
-
         #balances = [{
         #  status: "success"
         #  service: "http://node.cyber.fund"
