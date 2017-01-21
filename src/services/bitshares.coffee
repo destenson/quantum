@@ -1,7 +1,9 @@
 Promise = require("bluebird")
+fs = require('fs');
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 bitAssets = {
   CNY: 'BITCNY',
@@ -13,7 +15,7 @@ bitAssets = {
 }
 
 options =
-  url: "http://node.cyber.fund:8055/rpc",
+  url: config["bitshares"],
   method: 'GET',
   headers: {
     'Content-Type': 'application/json-rpc',

@@ -15,3 +15,4 @@ module.exports =
   openassets: require './openassets'
   ripple: require './ripple'
   steem: require './steem'
+  golos: require './golos'

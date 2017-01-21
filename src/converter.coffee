@@ -16,3 +16,6 @@ module.exports =
       basicAmount = Number(basicAmount)
     bigBasicAmount = new Big(basicAmount)
     Number(bigBasicAmount.div(conversion[type])).toString()
+
+  isConversion: (system) ->
+    if (system in conversion) then true else false
