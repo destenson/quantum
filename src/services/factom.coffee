@@ -2,9 +2,11 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 factom = (addr) ->
-  url = "http://node.cyber.fund:8077/v1/factoid-balance/#{addr}"
+  url = config["factom"].replace("[addr]", addr)
 
   req(url, json: true)
     .timeout(3000)
@@ -12,7 +14,7 @@ factom = (addr) ->
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: "http://localhost:8089"
+        service: url
         address: addr
         asset: "FCT"
         quantity: converter.toCoin(json.Response, "FCT")

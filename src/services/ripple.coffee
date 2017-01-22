@@ -2,9 +2,11 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 ripple = (addr) ->
-  url = "https://api.ripple.com/v1/accounts/#{addr}/balances?"
+  url = config["ripple"].replace("[addr]", addr)
 
   req(url, json: true)
     .timeout(2000)
@@ -21,7 +23,7 @@ ripple = (addr) ->
       item.value != '0'
     .map (asset) ->
       status: "success"
-      service: "https://api.ripple.com"
+      service: url
       address: addr
       quantity: asset.value
       asset: asset.currency

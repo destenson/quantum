@@ -3,18 +3,18 @@ req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 lisk = (addr) ->
-  req('https://login.lisk.io/api/accounts/getBalance',
-      qs: {'address': addr},
-      json: true
-    )
+  url = config["lisk"].replace("[addr]", addr)
+  req(url, json: true)
     .timeout(3000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: "https://login.lisk.io"
+        service: url
         address: addr
         quantity: converter.toCoin(json.balance, "LSK")
         asset: "LSK"

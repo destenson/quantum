@@ -4,6 +4,9 @@ _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 json = []
 
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
+
 cryptoid = (addr) ->
   currency = switch
     when addr[0] == 'X' then 'dash'
@@ -13,15 +16,14 @@ cryptoid = (addr) ->
     when addr[0] == 'G' then 'grt'
     else 'blk'
 
-  url = "http://chainz.cryptoid.info/#{currency}/api.dws?q=getbalance&a=#{addr}"
-
+  url = config["cryptoid"].replace("[addr]", addr).replace("[currency]", currency)
   req(url, json: true)
     .timeout(2000)
     .cancellable()
     .spread (resp) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: "http://chainz.cryptoid.info"
+        service: url
         address: addr
         quantity: resp.body.toString()
         asset: currency.toUpperCase()

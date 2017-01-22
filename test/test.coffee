@@ -17,7 +17,7 @@ describe "Balance", ->
     balance("LLiwS8XkQ7ra4XAg1TybTWrwnqFvMhiRfE").then (result) ->
       litecoin = _.find(result, (item) -> item.asset == "LTC")
       expect(litecoin).to.exist
-      done() 
+      done()
 
   it "has a XCP balance", (done) ->
     balance("16WhhnUUCZVvszFxsaCG3d6v77Qin1LErQ").then (result) ->
@@ -56,16 +56,16 @@ describe "Balance", ->
       done()
 
   it "has a ETH balance", (done) ->
-    balance("1ebacb7844fdc322f805904fbf1962802db1537c").then (result) ->
+    balance("0xcf03ae5e27d6f323b209b0fc63b689a367df4c14").then (result) ->
       ethereum = _.find(result, (item) -> item.asset == "ETH")
       expect(ethereum).to.exist
       done()
 
-  it "has a XRP balance", (done) ->
-    balance("rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh").then (result) ->
-      ripple = _.find(result, (item) -> item.asset == "XRP")
-      expect(ripple).to.exist
-      done()
+  # it "has a XRP balance", (done) ->
+  #   balance("rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh").then (result) ->
+  #     ripple = _.find(result, (item) -> item.asset == "XRP")
+  #     expect(ripple).to.exist
+  #     done()
 
   it "has a XEM balance", (done) ->
     balance("NCXIP5-JNP4GC-3JXXBB-U2UHF4-F4JYJ4-4DWFMN-EIMQ").then (result) ->
@@ -79,11 +79,11 @@ describe "Balance", ->
       expect(nxt).to.exist
       done()
 
-  # it "has a FCT balance", (done) ->
-  #   balance("FA1y5ZGuHSLmf2TqNf6hVMkPiNGyQpQDTFJvDLRkKQaoPo4bmbgu").then (result) ->
-  #     factoids = _.find(result, (item) -> item.asset == "FCT")
-  #     expect(factoids).to.exist
-  #     done()
+  it "has a FCT balance", (done) ->
+    balance("FA1y5ZGuHSLmf2TqNf6hVMkPiNGyQpQDTFJvDLRkKQaoPo4bmbgu").then (result) ->
+      factoids = _.find(result, (item) -> item.asset == "FCT")
+      expect(factoids).to.exist
+      done()
 
   it "has a BTS balance", (done) ->
     balance("bitshares-hipster").then (result) ->

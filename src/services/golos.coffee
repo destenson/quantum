@@ -4,7 +4,7 @@ _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 steemlib = require('steem')
 
-url = "http://this.piston.rocks"
+url = "https://this.goloscore.org"
 
 account_info =
   url    : url,
@@ -22,7 +22,7 @@ global_prop.body = JSON.stringify(
     id     : Math.floor(Math.random() * 10000))
 balances = []
 
-steem = (account) ->
+golos = (account) ->
   addr = account.split('-')[1]
   account_info.body = JSON.stringify(
           jsonrpc: '2.0',
@@ -36,9 +36,9 @@ steem = (account) ->
     .spread (resp, json) ->
       json = JSON.parse(json)
       if resp.statusCode in [200..299] and _.isArray(json.result)
-        balances = [{name: 'STEEM', amount: parseFloat(json.result[0].balance, 10)},
-                    {name: 'SBD', amount  : parseFloat(json.result[0].sbd_balance, 10)},
-                    {name: 'SP', amount   : parseFloat(json.result[0].vesting_shares, 10)}]
+        balances = [{name: 'GOLOS', amount: parseFloat(json.result[0].balance, 10)},
+                    {name: 'GBG', amount  : parseFloat(json.result[0].sbd_balance, 10)},
+                    {name: 'GP', amount   : parseFloat(json.result[0].vesting_shares, 10)}]
       else
         if _.isObject(json) and json.message == "error"
           []
@@ -67,4 +67,4 @@ steem = (account) ->
   .catch InvalidResponseError, (e) ->
     [status: "error", service: e.service, message: e.message, raw: e.response]
 
-module.exports = steem
+module.exports = golos

@@ -2,16 +2,18 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 doge = (addr) ->
-  url = "http://dogechain.info/api/v1/address/balance/#{addr}"
+  url = config["doge"].replace("[addr]", addr)
   req(url, json: true)
     .timeout(3000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: "https://dogechain.info"
+        service: url
         address: addr
         quantity: json.balance
         asset: "DOGE"

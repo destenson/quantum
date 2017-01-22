@@ -4,10 +4,10 @@ module.exports =
   bitshares: (addr) ->
     RegExp('^(bitshares-)[a-z0-9-.]{1,15}$').test(addr)
 
-  blockcypher: (addr) ->
+  bitcoin: (addr) ->
     RegExp('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$').test(addr)
 
-  chainso: (addr) ->
+  litecoin: (addr) ->
     RegExp('^L[a-km-zA-HJ-NP-Z1-9]{33}$').test(addr)
 
   counterparty: (addr) ->
@@ -56,3 +56,6 @@ module.exports =
 
   steem: (addr) ->
     RegExp('^(steem-)[a-z0-9-.]{1,15}$').test(addr)
+
+  golos: (addr) ->
+    RegExp('^(golos-)[a-z0-9-.]{1,15}$').test(addr)

@@ -3,54 +3,38 @@ req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
-Web3 = require('web3')
-web3 = new Web3()
-web3.setProvider(new web3.providers.HttpProvider('http://node.cyber.fund:8555'))
-
-balances = []
-
+tokens = []
 ethereum = (addr) ->
-  console.log(addr)
-  url = "http://api.cyber.fund/geth/Ethereum/address/#{addr}"
-  console.log(url)
-  req(url, json: true)
-    .timeout(15000)
+  url = config["ethereum"].replace("[addr]", addr)
+
+  req(url)
+    .timeout(5000)
     .cancellable()
     .spread (resp, json) ->
-      if resp.statusCode == 200
-        ret = null
-        try
-          ret = JSON.parse(json)
-        catch e
-          console.log('could not parse json')
-        #balances = [{
-        #  status: "success"
-        #  service: "http://node.cyber.fund"
-        #  address: addr
-        #  asset: "ETC"
-        #  quantity: web3.eth.getBalance(addr)
-        #}]
-        balances = []
-        _.each ret, (v, k)->
-          balances.push({
-            status: "success"
-            service: "http://api.cyber.fund"
-            asset: k
-            quantity: if typeof v == 'string' then parseFloat(v) else v
-            address: addr})
+      if resp.statusCode in [200..299]
+        json = JSON.parse(json)
+        systems = Object.keys(json)
+        for system in systems
+          quantity = if converter.isConversion(system) then converter.toCoin(json[system], system) else json[system]
+          tokens.push({
+              asset: system
+              quantity: parseFloat(quantity)
+            })
+        tokens
       else
         if _.isObject(json) and json.message == "error"
           []
         else
           throw new InvalidResponseError service: url, response: resp
-      return balances
-    #.map (token) ->
-    #    status: "success"
-    #    service: token.service
-    #    address: addr
-    #    asset: token.asset
-    #    quantity: token.quantity#//converter.toCoin(token.quantity, token.asset)
+    .map (token) ->
+        status: "success"
+        service: url
+        address: addr
+        asset: token.asset
+        quantity: token.quantity
     .catch Promise.TimeoutError, (e) ->
       [status: 'error', service: url, message: e.message, raw: e]
     .catch InvalidResponseError, (e) ->

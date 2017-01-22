@@ -2,9 +2,11 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 nxt_assets = (addr) ->
-  url = "http://node.cyber.fund:7877/nxt?requestType=getAccountAssets&account=#{addr}"
+  url = config["nxtassets"].replace("[addr]", addr)
 
   req(url, json: true)
     .timeout(2000)
@@ -35,7 +37,7 @@ nxt_assets = (addr) ->
       quantity = balance / (10 ** asset.divisibility)
 
       status: "success"
-      service: "http://node.cyber.fund:7877"
+      service: url
       address: addr
       quantity: quantity.toFixed(6)
       asset: asset.name

@@ -2,6 +2,8 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 property_map = {
   1: 'Omni',
@@ -24,17 +26,18 @@ chaingear_map = {
 }
 
 omni = (addr) ->
+  url = config["omni"].replace("[addr]", addr)
   Promise
     .all Object.keys(property_map)
     .map (property_id) ->
-      url = "http://omnichest.info/requeststat.aspx?stat=balance&prop=#{property_id}&address=#{addr}"
-      req(url, json: true)
-        .timeout(4000)
+      tb = url.replace("[property_id]", property_id)
+      req(tb)
+        .timeout(3000)
         .cancellable()
         .spread (resp, json) ->
           if resp.statusCode in [200..299]
             status: "success"
-            service: "http://omnichest.info"
+            service: url
             address: addr
             quantity: json
             asset: chaingear_map[property_id]
