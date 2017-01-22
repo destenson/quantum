@@ -3,9 +3,11 @@ req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 nem = (addr) ->
-  url = "http://bigalice3.nem.ninja:7890/account/get?address=#{addr.replace(/-/g,'')}"
+  url = config["nem"].replace("[addr]", addr.replace(/-/g,''))
 
   req(url, json: true)
     .timeout(2000)
@@ -13,7 +15,7 @@ nem = (addr) ->
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: "http://node.cyber.fund:7890"
+        service: url
         address: addr
         quantity: converter.toCoin(json.account.balance, "XEM")
         asset: "XEM"

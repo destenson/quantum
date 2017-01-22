@@ -1,0 +1,16 @@
+{
+  "bitshares": "https://bitshares.openledger.info/ws",
+  "bitcoin": "https://api.blockcypher.com/v1/btc/main/addrs/[addr]/balance",
+  "litecoin": "https://chain.so/api/v2/get_address_balance/LTC/[addr]",
+  "counterparty": "http://xcp.blockscan.com/api2?module=address&action=balance&btc_address=[addr]",
+  "cryptoid": "http://chainz.cryptoid.info/[currency]/api.dws?q=getbalance&a=[addr]",
+  "doge": "http://dogechain.info/api/v1/address/balance/[addr]",
+  "ethereum": "https://api.cyber.fund/Ethereum/address/[addr]",
+  "factom": "http://chainindex.cyber.fund:2222/v1/factoid-balance/[addr]",
+  "lisk": "https://login.lisk.io/api/accounts/getBalance?address=[addr]",
+  "nem": "http://chainindex.cyber.fund:2220/account/get?address=[addr]",
+  "nxt": "http://chainindex.cyber.fund:2221/nxt?requestType=getBalance&account=[addr]",
+  "nxtassets": "http://chainindex.cyber.fund:2221/nxt?requestType=getAccountAssets&account=[addr]",
+  "omni":"http://omniexplorer.info/ask.aspx?api=getbalance&prop=[property_id]&address=[addr]",
+  "ripple": "https://api.ripple.com/v1/accounts/[addr]/balances?"
+}

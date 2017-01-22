@@ -3,10 +3,12 @@ req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 tokens = []
 ethereum = (addr) ->
-  url = "https://api.cyber.fund/Ethereum/address/#{addr}"
+  url = config["ethereum"].replace("[addr]", addr)
 
   req(url)
     .timeout(5000)
@@ -29,15 +31,13 @@ ethereum = (addr) ->
           throw new InvalidResponseError service: url, response: resp
     .map (token) ->
         status: "success"
-        service: token.service
+        service: url
         address: addr
         asset: token.asset
         quantity: token.quantity
     .catch Promise.TimeoutError, (e) ->
-      console.log("Hi!!")
       [status: 'error', service: url, message: e.message, raw: e]
     .catch InvalidResponseError, (e) ->
-      console.log("Hi!!!!")
       [status: "error", service: e.service, message: e.message, raw: e.response]
 
 module.exports = ethereum

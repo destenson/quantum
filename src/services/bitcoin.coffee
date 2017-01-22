@@ -3,17 +3,18 @@ req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
 converter = require("./../converter")
-service = "https://api.blockcypher.com"
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 blockcypher = (addr) ->
-  url = "https://api.blockcypher.com/v1/btc/main/addrs/#{addr}/balance"
+  url = config["bitcoin"].replace("[addr]", addr)
   req(url, json: true)
     .timeout(5000)
     .cancellable()
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: service
+        service: url
         address: addr
         quantity: converter.toCoin(json.balance, "BTC")
         quantity_unconfirmed: converter.toCoin(json.final_balance, "BTC")

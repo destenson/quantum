@@ -2,9 +2,11 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 counterparty = (addr) ->
-  url = "http://xcp.blockscan.com/api2?module=address&action=balance&btc_address=#{addr}"
+  url = config["counterparty"].replace("[addr]", addr)
 
   req(url, json: true)
     .timeout(4000)
@@ -19,7 +21,7 @@ counterparty = (addr) ->
           throw new InvalidResponseError service: url, response: resp
     .map (data) ->
       status: "success"
-      service: "http://xcp.blockscan.com"
+      service: url
       address: addr
       quantity: data.balance
       asset: data.asset

@@ -10,7 +10,7 @@ clean:
 
 build:
 	./node_modules/coffee-script/bin/coffee -o lib/ -c src/
-	# cp ./src/services/config.json ./lib/services/config.json
+	cp ./src/services/config.json ./lib/services/config.json
 
 dist: clean init build
 

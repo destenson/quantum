@@ -65,7 +65,9 @@
     "lodash": "^3.10.1",
     "numeral": "^1.5.3",
     "request": "^2.67.0",
-    "web3": "^0.17.0-beta"
+    "steem": "^0.4.2",
+    "web3": "^0.17.0-beta",
+    "steem": "^0.4.2"
   },
   "devDependencies": {
     "chai": "^2.1.0",

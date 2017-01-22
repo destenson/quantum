@@ -2,9 +2,11 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+fs = require('fs');
+config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf8'));
 
 chain_so = (addr) ->
-  url = "https://chain.so/api/v2/get_address_balance/LTC/#{addr}"
+  url = config["litecoin"].replace("[addr]", addr)
 
   req(url, json: true)
     .timeout(3000)
@@ -12,7 +14,7 @@ chain_so = (addr) ->
     .spread (resp, json) ->
       if resp.statusCode in [200..299]
         status: "success"
-        service: "https://chain.so"
+        service: url
         address: addr
         quantity: json.data.confirmed_balance
         asset: "LTC"

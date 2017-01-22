@@ -2,9 +2,12 @@ Promise = require("bluebird")
 req = Promise.promisify(require("request"))
 _ = require("lodash")
 InvalidResponseError = require("../errors").InvalidResponseError
+steemlib = require('steem')
+
+url = "https://this.goloscore.org"
 
 account_info =
-  url    : "http://node2.cyber.fund:8092/rpc",
+  url    : url,
   method : 'GET',
   headers: {
     'Content-Type': 'application/json-rpc',
@@ -28,7 +31,7 @@ golos = (account) ->
           id     : Math.floor(Math.random() * 10000)
   )
   req(account_info)
-    .timeout(300)
+    .timeout(3000)
     .cancellable()
     .spread (resp, json) ->
       json = JSON.parse(json)
@@ -42,7 +45,7 @@ golos = (account) ->
         else
           throw new InvalidResponseError service: url, response: resp
   req(global_prop)
-    .timeout(300)
+    .timeout(2000)
     .cancellable()
     .spread (resp, json) ->
       json = JSON.parse(json)
@@ -52,10 +55,9 @@ golos = (account) ->
         balances
       else
         throw new InvalidResponseError service: url, response: resp
-      balances
   .map (token) ->
     status: "success"
-    service: "http://node.cyber.fund:8092/rpc"
+    service: url
     address: account
     quantity: token.amount
     asset: token.name

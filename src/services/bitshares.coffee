@@ -14,28 +14,31 @@ bitAssets = {
   EUR: 'BITEUR'
 }
 
+url = config["bitshares"]
+
 options =
-  url: config["bitshares"],
+  url: url,
   method: 'GET',
   headers: {
     'Content-Type': 'application/json-rpc',
     'Accept': 'application/json-rpc'
   }
-
 bitshares = (account) ->
   addr = account.split('-')[1]
   options.body =
     JSON.stringify(
       'jsonrpc': '2.0',
-      'method': 'list_account_balances',
-      'params': [addr,[]]
+      'method': 'get_named_account_balances',
+      'params': [addr,[]],
+      'id': Math.random()
     )
   req(options)
-    .timeout(2000)
+    .timeout(3000)
     .cancellable()
     .spread (resp, json) ->
       json = JSON.parse(json)
       if resp.statusCode in [200..299] and _.isArray(json.result)
+        # console.log(json)
         json.result
       else
         if _.isObject(json) and json.message == "error"
@@ -46,8 +49,9 @@ bitshares = (account) ->
       options.body =
         JSON.stringify(
           "jsonrpc": "2.0",
-          "method": "get_asset",
-          "params":[asset.asset_id]
+          "method": "get_assets",
+          "params":[[asset.asset_id]],
+          "id": Math.random()
         )
       req(options)
         .timeout(2000)
@@ -58,7 +62,7 @@ bitshares = (account) ->
             if _.isNull json
               _.merge asset, name: "#{asset.asset_id}", divisibility: 0
             else if json.asset == asset.asset
-              _.merge asset, name: "#{json.result.symbol}", divisibility: json.result.precision
+              _.merge asset, name: "#{json.result[0].symbol}", divisibility: json.result[0].precision
           else
             throw new InvalidResponseError service: url, response: resp
     .map (asset) ->
@@ -67,7 +71,7 @@ bitshares = (account) ->
       token = if _.has(bitAssets, asset.name) then bitAssets[asset.name] else asset.name
 
       status: "success"
-      service: "http://node.cyber.fund:8092/rpc"
+      service: url
       address: account
       quantity: quantity
       asset: token
